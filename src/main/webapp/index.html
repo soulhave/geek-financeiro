@@ -1,0 +1,86 @@
+<html>
+	<head>
+		 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		 <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+		 <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+		 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+		 
+		 <script>
+			 var app = angular.module("app", []);
+			 app.controller("appCtrl",function($scope,$http){
+				$scope.teste = "Olá Mundo";
+				
+				$http({
+				method: 'GET',
+				url: 'https://gae-demo-1275.appspot.com/_ah/api/bancoapi/v1/bancos'
+				}).then(function successCallback(response) {
+					$scope.bancos = response.data;
+				}, function errorCallback(response) {
+					
+				});
+			 });
+		 </script>
+		 <title>App Test</title>
+	     <style type="text/css">
+        .divCenter { 
+				border: 1px solid;
+				border-color: black;
+				background-color: white; 
+                width: 430px; 
+                height: 600px; 
+                left: 50%; 
+                margin: -130px 0 0 -210px; 
+                padding:10px;
+                position: absolute; 
+                top: 15%; }
+		</style>		
+	</head>
+	<body ng-app="app" ng-controller="appCtrl" style="background-color: grey;">
+		<div id="divcenter" class="divcenter">
+			<form>
+				<h3>Cadastro de Bancos</h3>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="nome">
+					<label class="mdl-textfield__label" for="nome">Nome do Banco:</label>
+				</div>
+				<br/>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="cor">
+					<label class="mdl-textfield__label" for="cor">Cor do Banco:</label>
+				</div>
+				<br/>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="saldo">
+					<label class="mdl-textfield__label" for="saldo">Saldo</label>
+					<span class="mdl-textfield__error">Não é um saldo válido</span>
+				</div>
+				<br><br>
+				<button class="mdl-button mdl-js-button mdl-button--raised">
+					Enviar
+				</button>
+				<button class="mdl-button mdl-js-button mdl-button--raised" type="reset">
+					Limpar
+				</button>				
+				<br><br>
+					<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+						<thead>
+							<tr>
+								<th class="mdl-data-table__cell--non-numeric">Banco</th>
+								<th class="mdl-data-table__cell--non-numeric">Cor</th>
+								<th>Saldo</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="banco in bancos.items">
+								<td class="mdl-data-table__cell--non-numeric">{{banco.nome}}</td>
+								<td class="mdl-data-table__cell--non-numeric">{{banco.cor}}</td>
+								<td>{{banco.saldo | currency}}</td>
+							</tr>
+						</tbody>
+					</table>					
+			</form>			
+		</div>		
+	</body>
+	
+	
+</html>

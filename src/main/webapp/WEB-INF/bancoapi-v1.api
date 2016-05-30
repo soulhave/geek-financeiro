@@ -1,0 +1,223 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://gae-demo-1275.appspot.com/_ah/api",
+  "name" : "bancoapi",
+  "version" : "v1",
+  "description" : "Api de informações de Banco",
+  "defaultVersion" : false,
+  "discovery" : [ "PUBLIC" ],
+  "adapter" : {
+    "bns" : "https://gae-demo-1275.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "br.com.geek.financeiro.bancos",
+  "ownerName" : "br.com.geek.financeiro.bancos",
+  "methods" : {
+    "bancoapi.bancos.excluirTodos" : {
+      "path" : "bancos",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "br.com.geek.financeiro.app.api.service.BancoServiceAPI.excluirTodos",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "bancoapi.bancos.buscarTodos" : {
+      "path" : "bancos",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "br.com.geek.financeiro.app.api.service.BancoServiceAPI.getItens",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "bancoapi.bancos.atualizar" : {
+      "path" : "bancos/{chave}",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "br.com.geek.financeiro.app.api.service.BancoServiceAPI.atualizarIten",
+      "request" : {
+        "parameters" : {
+          "chave" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "bancoapi.bancos.excluirItem" : {
+      "path" : "bancos/{chave}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "br.com.geek.financeiro.app.api.service.BancoServiceAPI.excluirItem",
+      "request" : {
+        "parameters" : {
+          "chave" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "bancoapi.bancos.incluir" : {
+      "path" : "bancos",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "br.com.geek.financeiro.app.api.service.BancoServiceAPI.inserirIten",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "bancoapi.bancos.buscarItem" : {
+      "path" : "bancos/{chave}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "br.com.geek.financeiro.app.api.service.BancoServiceAPI.getItem",
+      "request" : {
+        "parameters" : {
+          "chave" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Response" : {
+        "id" : "Response",
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "string"
+          }
+        }
+      },
+      "BancoEntity" : {
+        "id" : "BancoEntity",
+        "type" : "object",
+        "properties" : {
+          "nome" : {
+            "type" : "string"
+          },
+          "cor" : {
+            "type" : "string"
+          },
+          "saldo" : {
+            "type" : "number"
+          },
+          "id" : {
+            "type" : "string"
+          }
+        }
+      },
+      "BancoEntityCollection" : {
+        "id" : "BancoEntityCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "BancoEntity"
+            }
+          }
+        }
+      }
+    },
+    "methods" : {
+      "br.com.geek.financeiro.app.api.service.BancoServiceAPI.excluirTodos" : {
+        "response" : {
+          "$ref" : "Response"
+        }
+      },
+      "br.com.geek.financeiro.app.api.service.BancoServiceAPI.getItens" : {
+        "response" : {
+          "$ref" : "BancoEntityCollection"
+        }
+      },
+      "br.com.geek.financeiro.app.api.service.BancoServiceAPI.atualizarIten" : {
+        "request" : {
+          "$ref" : "BancoEntity"
+        },
+        "response" : {
+          "$ref" : "BancoEntity"
+        }
+      },
+      "br.com.geek.financeiro.app.api.service.BancoServiceAPI.excluirItem" : {
+        "response" : {
+          "$ref" : "Response"
+        }
+      },
+      "br.com.geek.financeiro.app.api.service.BancoServiceAPI.inserirIten" : {
+        "request" : {
+          "$ref" : "BancoEntity"
+        },
+        "response" : {
+          "$ref" : "BancoEntity"
+        }
+      },
+      "br.com.geek.financeiro.app.api.service.BancoServiceAPI.getItem" : {
+        "response" : {
+          "$ref" : "BancoEntity"
+        }
+      }
+    }
+  }
+}

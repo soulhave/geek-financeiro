@@ -1,0 +1,16 @@
+{
+  "name": "geekf",
+  "version": "1.0.0",
+  "description": "My management financial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "financial",
+    "geek",
+    "gae"
+  ],
+  "author": "Ramon Mendes",
+  "license": "ISC"
+}
